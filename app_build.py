@@ -5,9 +5,40 @@ import shutil
 import os
 import io
 
-st.title('$intersect')
+st.markdown(
+    """
+    <style>
+    .type-title {
+        font-family: 'Helvetica Neue', sans-serif;
+        font-weight: 300;
+        font-size: 3rem;
+        text-transform: uppercase;
+        letter-spacing: 8px;
+        color: #4CC8A3 !important;
+        display: inline-block;
+        position: relative;
+        padding-bottom: 10px;
+        margin-bottom: 28px;
+    }
+    .type-title::after {
+        content: ""; position: absolute; left: 0; bottom: 0;
+        height: 3px; width: 0; background: #4CC8A3;
+        animation: underline 1s ease forwards;
+    }
+    @keyframes underline { to { width: 90% } }
+    </style>
+    <h1 class="type-title">intersect</h1>
+    """,
+    unsafe_allow_html=True,
+)
 
-st.markdown("for full explanation of bedtools intersect options, see [here](https://bedtools.readthedocs.io/en/latest/content/tools/intersect.html)")
+st.markdown(
+    "<div style='margin-top:24px; margin-bottom:24px;'>"
+    "For a full explanation of bedtools intersect options, see "
+    "<a href='https://bedtools.readthedocs.io/en/latest/content/tools/intersect.html' "
+    "target='_blank'>here</a></div>",
+    unsafe_allow_html=True,
+)
 
 with st.container(border=True):
     st.badge("-a", color="primary")
