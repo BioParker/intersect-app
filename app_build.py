@@ -20,12 +20,20 @@ st.markdown(
         padding-bottom: 10px;
         margin-bottom: 28px;
     }
+    /* underline: draws left → right */
     .type-title::after {
         content: ""; position: absolute; left: 0; bottom: 0;
         height: 3px; width: 0; background: #4CC8A3;
         animation: underline 1s ease forwards;
     }
-    @keyframes underline { to { width: 90% } }
+    /* vertical line at the end: draws top → bottom */
+    .type-title::before {
+        content: ""; position: absolute; top: 0; right: 0;
+        width: 3px; height: 0; background: #4CC8A3;
+        animation: draw-vert 1s ease forwards;
+    }
+    @keyframes underline { to { width: 100% } }
+    @keyframes draw-vert { to { height: 100% } }
     </style>
     <h1 class="type-title">intersect</h1>
     """,
