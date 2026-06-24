@@ -32,8 +32,8 @@ st.markdown(
         width: 3px; height: 0; background: #4CC8A3;
         animation: draw-vert 1s ease forwards;
     }
-    @keyframes underline { to { width: 100% } }
-    @keyframes draw-vert { to { height: 100% } }
+    @keyframes underline { to { width: 120% } }
+    @keyframes draw-vert { to { height: 120% } }
     </style>
     <h1 class="type-title">intersect</h1>
     """,
