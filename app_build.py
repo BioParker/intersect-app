@@ -214,13 +214,13 @@ if mode == "Intersect":
         "<div style='margin-top:24px; margin-bottom:24px;'>"
         "For a full explanation of bedtools intersect options, see "
         "<a href='https://bedtools.readthedocs.io/en/latest/content/tools/intersect.html' "
-        "target='_blank'>here.</a></div>",
+        "target='_blank'>here</a></div>",
         unsafe_allow_html=True,
     )
 
     with st.container(border=True):
         st.badge("-a", color="primary")
-        st.caption("Set of features to filter, BED or GTF file.")
+        st.caption("Set of features to filter, BED or GTF file")
         afile = st.file_uploader("*a-file", type=["bed", "gtf"],label_visibility="collapsed")
 
     if afile and os.path.splitext(afile.name)[1] == ".gtf":
@@ -228,28 +228,28 @@ if mode == "Intersect":
             df = pd.read_csv(afile, sep="\t", header=None, comment="#", usecols=[2])
             feature_types = ["all"] + sorted(df[2].unique())
             st.badge("Feature type", color="primary")
-            st.caption("Select feature type from -a to extract.")
+            st.caption("Select feature type from -a to extract")
             ftype = st.selectbox("Select feature type",
                                   feature_types)
 
     with st.container(border=True):
         st.badge("-b", color="primary")
-        st.caption("Features to intersect against. Please provide a single set of coordinates or a file in an appropriate format (BED/GTF).")
+        st.caption("Features to intersect against. Please provide a single set of coordinates or a file in an appropriate format (BED/GTF)")
         boption = st.segmented_control("boption",
                                    ["coordinates", "file"],
                                        label_visibility="collapsed")
         if boption == "coordinates":
-            coordinates = st.text_input("Input coordinates to intersect with **-a** in the format *chr:start-end*, 1-based.")
+            coordinates = st.text_input("Input coordinates to intersect with **-a** in the format *chr:start-end*, 1-based")
         elif boption == "file":
             bfile = st.file_uploader("*b-file", type=["bed", "gtf"], label_visibility="collapsed")
 
-    dofrac = st.toggle("Toggle for the -f option, which sets the minimum required overlap fraction.",
+    dofrac = st.toggle("Toggle for the -f option, which sets the minimum required overlap fraction",
                        False)
 
     recip = False
     if dofrac:
         recip = st.toggle("Toggle for the -r option, which determines whether the -f fraction is reciprocal"
-                           "\nFor exact matches, use -r and set the -f slider to 1.",
+                           "\nFor exact matches, use -r and set the -f slider to 1",
                            False)
         f = st.slider("-f",
                       min_value=0.0,
@@ -258,7 +258,7 @@ if mode == "Intersect":
     else:
         f = None
 
-    strand = st.toggle("Toggle for the -s option, which enforces strand matching.",
+    strand = st.toggle("Toggle for the -s option, which enforces strand matching",
                        False)
 
     st.divider()
@@ -269,13 +269,13 @@ if mode == "Intersect":
     if run:
         # --- validate ---
         if afile is None:
-            st.error("Upload an -a file first.")
+            st.error("Upload an -a file first")
             st.stop()
         if boption is None:
-            st.error("Choose a -b input: coordinates or a BED file.")
+            st.error("Choose a -b input: coordinates or a BED file")
             st.stop()
         if shutil.which("bedtools") is None:
-            st.error("bedtools isn't on PATH — activate the conda env that has it.")
+            st.error("bedtools isn't on PATH — activate the conda env that has it")
             st.stop()
 
         with tempfile.TemporaryDirectory() as td:
@@ -400,11 +400,11 @@ if mode == "Extract":
             feats = ["all"] + sorted(feats)
             st.badge("Feature type", color="primary")
             st.caption("Select feature type to extract")
-            ftype = st.selectbox("Select feature type.",
+            ftype = st.selectbox("Select feature type",
                                   feats,
                                   label_visibility="collapsed")
             st.badge("Attributes field", color="primary")
-            st.caption("Select attribute field to filter on.")
+            st.caption("Select attribute field to filter on")
             atype = st.selectbox("Select field",
                                   attr_name,
                                   label_visibility="collapsed")
@@ -412,7 +412,7 @@ if mode == "Extract":
             with st.container(border=True):
                 st.badge("Attribute values", color="primary")
                 st.caption(f"Input a single value, or a text file with one value per line."
-                           f" Every line whose **{atype}** attribute matches the provided value will be extracted.")
+                           f" Every line whose **{atype}** attribute matches the provided value will be extracted")
                 voption = st.segmented_control("voption",
                                               ["text input", "file"],
                                                label_visibility="collapsed")
@@ -428,14 +428,14 @@ if mode == "Extract":
     if run:
         # --- validate ---
         if egtf is None:
-            st.error("Upload a GTF file first.")
+            st.error("Upload a GTF file first")
             st.stop()
         if voption is None:
             st.error("Please provide values to filter attributes")
             st.stop()
         if voption == "file":
             if vfile is None:
-                st.error("Upload a values file.")
+                st.error("Upload a values file")
                 st.stop()
 
         vlist=set()
