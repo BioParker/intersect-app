@@ -367,7 +367,7 @@ if mode == "Extract":
 
     with st.container(border=True):
         st.badge("GTF", color="primary")
-        st.caption("GTF file to extract from.")
+        st.caption("GTF file to extract from")
         egtf = st.file_uploader("*gtf-file", type=["gtf"],label_visibility="collapsed")
 
     if egtf:
