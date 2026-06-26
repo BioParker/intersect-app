@@ -59,6 +59,7 @@ def animated_title(word: str):
         """,
         unsafe_allow_html=True,
     )
+
 def animated_title_boxed(word: str):
     key = "".join(ch for ch in word.lower() if ch.isalnum())  # css-safe suffix
     st.markdown(
@@ -79,6 +80,8 @@ def animated_title_boxed(word: str):
             padding: 12px 16px;          /* breathing room so the box clears the letters */
             margin: 0;                   /* margin now lives on the wrapping div */
             line-height: 1.1;
+            /* after the box finishes drawing (1.8s), slide the whole thing to centre */
+            animation: slide-centre-{key} 0.9s ease 1.8s forwards;
         }}
         .type-wrap-{key} .ghost {{
             visibility: hidden;
@@ -86,8 +89,8 @@ def animated_title_boxed(word: str):
         }}
         .type-wrap-{key} .type-title {{
             position: absolute;
-            left: 16px;                  /* match padding so it sits over the ghost */
-            top: 12px;
+            left: 20px;                  /* was 16px → ~4px further right */
+            top: 16px;                   /* was 12px → ~4px further down */
             white-space: nowrap;
             opacity: 0;                  /* start invisible, fade in */
             animation: fade-{key} 1.2s ease forwards;
@@ -121,6 +124,11 @@ def animated_title_boxed(word: str):
         }}
         @keyframes bx-h-{key} {{ to {{ width: 100%; }} }}
         @keyframes bx-v-{key} {{ to {{ height: 100%; }} }}
+        /* slide the whole box from its left position to the horizontal centre */
+        @keyframes slide-centre-{key} {{
+            from {{ transform: translateX(0); }}
+            to   {{ transform: translateX(calc(25vw - 50% - 1rem)); }}
+        }}
         </style>
         <div class="type-outer-{key}">
             <h1 class="type-wrap-{key}">
