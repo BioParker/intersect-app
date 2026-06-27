@@ -127,7 +127,7 @@ def animated_title_boxed(word: str):
         /* slide the whole box from its left position to the horizontal centre */
         @keyframes slide-centre-{key} {{
             from {{ transform: translateX(0); }}
-            to   {{ transform: translateX(calc(25vw - 50% - 1rem)); }}
+            to   {{ transform: translateX(220px); }}
         }}
         </style>
         <div class="type-outer-{key}">
